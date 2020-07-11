@@ -1,0 +1,27 @@
+.question {
+    position: fixed;
+    padding-left: 20px;
+    z-index: 1;
+    pointer-events: none;
+
+    h2 {
+        color: rgb(75, 75, 75);
+
+        span {
+            color: rgb(236, 9, 168);
+        }
+    }
+}
+
+.btn {
+    position: fixed;
+    bottom: 20px;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+
+    button {
+        text-transform: uppercase;
+        font-family: 'Fredericka the Great', cursive !important;
+    }
+}
