@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     totalDistance: number;
     showSummery = false;
     features: any;
-    questionNum = 2;
+    questionNum = 10;
 
     constructor(private mapService: MapService) { }
 
