@@ -1,5 +1,3 @@
-import { GeoJSONSource } from 'mapbox-gl';
-
 export const bro = {
     "type": "FeatureCollection",
     "name": "museer",
