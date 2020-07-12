@@ -8,3 +8,20 @@ body {
   margin: 0;
   font-family: 'Fredericka the Great', cursive;
 }
+
+.mapboxgl-popup-content {
+  font-family: 'Fredericka the Great', cursive;
+  background-color: rgba(96, 96, 96, 0.26);
+  text-align: center;
+  color: snow;
+
+  a:link, a:visited {
+    color: rgb(238, 238, 238);
+    text-align: center;
+    // text-decoration: none;
+  }
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: #f08;
+}

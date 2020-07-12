@@ -11,6 +11,7 @@ import { locations } from '../assets/museer';
 })
 export class AppComponent implements OnInit {
     title = 'geoquiz';
+    showLanding = true;
     randomLocations: Feature[];
     index = 0;
     buttonGuess = true;
@@ -39,14 +40,29 @@ export class AppComponent implements OnInit {
 
     answer() {
 
-        const guess = [this.mapService.currentLocation['lng'], this.mapService.currentLocation['lat']] as [number, number];
-        const answer = this.randomLocations[this.index].geometry['coordinates'] as [number, number];
+        // Get guess and answer coords
+        const feature = this.randomLocations[this.index];
+        const guessCoords = [this.mapService.currentLocation['lng'], this.mapService.currentLocation['lat']] as [number, number];
+        const answerCoords = feature.geometry['coordinates'] as [number, number];
 
-        const line = this.mapService.createLine(guess, answer);
-        const dist = this.mapService.getDistance(guess, answer);
+        // draw line on map and calculate distance
+        const line = this.mapService.createLine(guessCoords, answerCoords);
+        const dist = this.mapService.getDistance(guessCoords, answerCoords);
         this.distance.push(dist);
         this.mapService.addLineToMap(line, dist);
         this.mapService.zoomTo(line);
+
+        // Add popup
+        const name = feature.properties.name;
+        const wikiId = feature.properties.wikidata;
+        let html;
+        if (wikiId) {
+            html = `<h3>${name}</h3><a href=https://www.wikidata.org/wiki/${wikiId} target="_blank">Wikidata</a>`;
+        } else {
+            html = `<h3>${name}</h3>`;
+        }
+
+        this.mapService.addPopup(answerCoords, html);
 
         this.buttonGuess = false;
 
@@ -59,6 +75,7 @@ export class AppComponent implements OnInit {
 
         // Remove markers and line
         this.mapService.marker.remove();
+        this.mapService.popup.remove();
         this.mapService.removeLine();
 
         // Zoom to dk
@@ -77,11 +94,12 @@ export class AppComponent implements OnInit {
     playAgain() {
         this.showSummery = false;
         this.index = 0;
-        this.totalDistance = 0;
+        this.distance = [];
         this.randomLocations = this.mapService.getRandomLocations(this.features, 10);
 
-        // Remove markers and line
+        // Remove popup, marker and line
         this.mapService.marker.remove();
+        this.mapService.popup.remove();
         this.mapService.removeLine();
         this.mapService.currentLocation = null;
         this.mapService.flyToDK();

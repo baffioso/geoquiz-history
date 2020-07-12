@@ -4,7 +4,12 @@
     z-index: 1;
     pointer-events: none;
 
+    p {
+        margin-bottom: 5px;
+    }
+
     h2 {
+        margin-top: 5px;
         color: rgb(75, 75, 75);
 
         span {
@@ -15,7 +20,7 @@
 
 .btn {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     z-index: 1;
     text-align: center;
     width: 100%;
@@ -23,5 +28,10 @@
     button {
         text-transform: uppercase;
         font-family: 'Fredericka the Great', cursive !important;
+        width: 200px;
+
+        h3 {
+            margin: 5px;
+        }
     }
 }

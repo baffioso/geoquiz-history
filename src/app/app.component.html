@@ -1,11 +1,16 @@
 <div class="question">
+    <p>{{index+1}}/{{questionNum}}</p>
     <h2 *ngIf="index < questionNum">
         Hvor ligger <span class="location">{{randomLocations[index].properties.name}}</span>?
     </h2>
 </div>
 <div class="btn">
-    <button *ngIf="index < questionNum" mat-flat-button (click)="onClick()">{{buttonGuess ? 'Gæt' : 'Næste'}}</button>
-    <button *ngIf="index >= questionNum" mat-flat-button (click)="handleSummery()">se resultat</button>
+    <button *ngIf="index < questionNum" mat-flat-button (click)="onClick()">
+        <h3>{{buttonGuess ? 'Gæt' : 'Næste'}}</h3>
+    </button>
+    <button *ngIf="index >= questionNum" mat-flat-button (click)="handleSummery()">
+        <h3>se resultat</h3>
+    </button>
 </div>
 <app-summery *ngIf="showSummery" [distance]="totalDistance" (replay)="playAgain()"></app-summery>
 <app-map></app-map>

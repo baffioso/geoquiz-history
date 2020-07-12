@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Map, Marker, NavigationControl, LngLatLike, GeoJSONSource, LngLatBoundsLike } from 'mapbox-gl';
+import { Map, Marker, NavigationControl, LngLatLike, GeoJSONSource, LngLatBoundsLike, Popup } from 'mapbox-gl';
 import bbox from '@turf/bbox';
 import distance from '@turf/distance';
 import { environment } from '../../environments/environment';
-import { Feature } from 'geojson';
-import { MatOptgroup } from '@angular/material/core';
 
 
 @Injectable({
@@ -15,7 +13,8 @@ export class MapService {
     style = 'mapbox://styles/baffioso/ckch86rut1u3k1im4lyfti1l8';
     center = [11, 55.5];
     zoom = 5;
-    marker = new Marker();
+    marker = new Marker({ color: 'black' });
+    popup = new Popup({ closeButton: false });
     currentLocation: LngLatLike;
 
     createMap() {
@@ -34,17 +33,26 @@ export class MapService {
         });
     }
 
+    addMarker(coords: LngLatLike): void {
+        this.marker
+            .setLngLat(coords)
+            .addTo(this.map);
+    }
+
+    addPopup(coords: [number, number], html: string): void {
+        this.popup
+            .setLngLat(coords)
+            .setHTML(html)
+            .addTo(this.map);
+    }
+
     addBehavior() {
 
         this.map.on('click', (e) => {
+            this.addMarker(e.lngLat);
             this.currentLocation = e.lngLat;
-
-            this.marker
-                .setLngLat(e.lngLat)
-                .addTo(this.map);
-
-            // console.log(this.marker);
         });
+
     }
 
     getRandomLocations(features: any, n: number) {
@@ -74,7 +82,7 @@ export class MapService {
         };
     }
 
-    addLineToMap(line: any, distance: number) {
+    addLineToMap(line: any, dist: number) {
         if (this.map.getLayer('line')) {
             (this.map.getSource('line') as GeoJSONSource).setData(line);
         } else {
@@ -100,7 +108,7 @@ export class MapService {
                 type: 'symbol',
                 source: 'line',
                 layout: {
-                    'text-field': `${String(Math.round(distance))} km`,
+                    'text-field': `${String(Math.round(dist))} km`,
                     'symbol-placement': 'line-center'
                 },
                 paint: {
@@ -120,7 +128,7 @@ export class MapService {
 
     zoomTo(geom) {
         const bounds = bbox(geom) as LngLatBoundsLike;
-        this.map.fitBounds(bounds, { padding: 60 });
+        this.map.fitBounds(bounds, { padding: 80 });
     }
 
     flyToDK() {
