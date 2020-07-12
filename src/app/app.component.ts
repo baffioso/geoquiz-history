@@ -43,9 +43,10 @@ export class AppComponent implements OnInit {
         const answer = this.randomLocations[this.index].geometry['coordinates'] as [number, number];
 
         const line = this.mapService.createLine(guess, answer);
-        this.mapService.addLineToMap(line);
+        const dist = this.mapService.getDistance(guess, answer);
+        this.distance.push(dist);
+        this.mapService.addLineToMap(line, dist);
         this.mapService.zoomTo(line);
-        this.distance.push(this.mapService.getDistance(guess, answer));
 
         this.buttonGuess = false;
 
@@ -76,6 +77,7 @@ export class AppComponent implements OnInit {
     playAgain() {
         this.showSummery = false;
         this.index = 0;
+        this.totalDistance = 0;
         this.randomLocations = this.mapService.getRandomLocations(this.features, 10);
 
         // Remove markers and line
@@ -85,9 +87,6 @@ export class AppComponent implements OnInit {
         this.mapService.flyToDK();
 
         this.buttonGuess = true;
-
-
-        console.log('hello');
     }
 
 }

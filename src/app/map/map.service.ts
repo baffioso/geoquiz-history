@@ -4,6 +4,7 @@ import bbox from '@turf/bbox';
 import distance from '@turf/distance';
 import { environment } from '../../environments/environment';
 import { Feature } from 'geojson';
+import { MatOptgroup } from '@angular/material/core';
 
 
 @Injectable({
@@ -73,17 +74,19 @@ export class MapService {
         };
     }
 
-    addLineToMap(line: any) {
+    addLineToMap(line: any, distance: number) {
         if (this.map.getLayer('line')) {
             (this.map.getSource('line') as GeoJSONSource).setData(line);
         } else {
+            this.map.addSource('line', {
+                'type': 'geojson',
+                'data': line
+            });
+
             this.map.addLayer({
                 id: 'line',
                 type: 'line',
-                source: {
-                    type: 'geojson',
-                    data: line
-                },
+                source: 'line',
                 layout: {},
                 paint: {
                     'line-color': '#f08',
@@ -91,11 +94,27 @@ export class MapService {
                     'line-dasharray': [2, 1]
                 }
             });
+
+            this.map.addLayer({
+                id: 'line-label',
+                type: 'symbol',
+                source: 'line',
+                layout: {
+                    'text-field': `${String(Math.round(distance))} km`,
+                    'symbol-placement': 'line-center'
+                },
+                paint: {
+                    'text-color': '#f08',
+                    'text-halo-color': 'white',
+                    'text-halo-width': 3
+                }
+            });
         }
     }
 
     removeLine() {
         this.map.removeLayer('line');
+        this.map.removeLayer('line-label');
         this.map.removeSource('line');
     }
 
