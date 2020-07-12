@@ -1,6 +1,6 @@
 import { GeoJSONSource } from 'mapbox-gl';
 
-export const locations = {
+export const stadion = {
     "type": "FeatureCollection",
     "name": "museer",
     "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },

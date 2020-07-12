@@ -1,0 +1,15 @@
+<div class="landing">
+    <div class="intro">
+        <h2>Velkommen til Geoquiz</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur tempore animi perspiciatis nemo doloribus
+            molestiae, quidem, facere voluptates mollitia quasi magni ut aspernatur totam repudiandae nobis est ipsam!
+            Hic, itaque?</p>
+        <p>Vælg en kategori herunder</p>
+    </div>
+    <div class="categories">
+        <div *ngFor="let cat of categories">
+            <button mat-flat-button (click)="selected(cat.id)">{{cat.name}}</button>
+        </div>
+
+    </div>
+</div>

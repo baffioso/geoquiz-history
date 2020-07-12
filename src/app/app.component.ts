@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Feature } from 'geojson';
 
 import { MapService } from './map/map.service';
-import { locations } from '../assets/museer';
+import { museum } from '../assets/museum';
+import { stadion } from '../assets/stadion';
+import { bro } from '../assets/bro';
+
 
 @Component({
     selector: 'app-root',
@@ -20,14 +23,15 @@ export class AppComponent implements OnInit {
     showSummery = false;
     features: any;
     questionNum = 10;
+    categories = [
+        { name: 'Museer', id: 'museum' },
+        { name: 'Stadioner', id: 'stadion' },
+        { name: 'Broer', id: 'bro' }
+    ];
 
     constructor(private mapService: MapService) { }
 
     ngOnInit(): void {
-        this.features = locations.features;
-
-        this.randomLocations = this.mapService.getRandomLocations(this.features, this.questionNum);
-
     }
 
     onClick() {
@@ -36,6 +40,27 @@ export class AppComponent implements OnInit {
         } else {
             this.handleSummery();
         }
+    }
+
+    selectedCategory(id: string) {
+        this.showLanding = false;
+
+        switch (id) {
+            case 'museum':
+                this.features = museum.features;
+                break;
+            case 'bro':
+                this.features = bro.features;
+                break;
+            case 'stadion':
+                this.features = stadion.features;
+                break;
+            default:
+                break;
+        }
+
+        this.randomLocations = this.mapService.getRandomLocations(this.features, this.questionNum);
+        console.log(id);
     }
 
     answer() {
@@ -92,7 +117,6 @@ export class AppComponent implements OnInit {
     }
 
     playAgain() {
-        this.showSummery = false;
         this.index = 0;
         this.distance = [];
         this.randomLocations = this.mapService.getRandomLocations(this.features, 10);
@@ -105,6 +129,8 @@ export class AppComponent implements OnInit {
         this.mapService.flyToDK();
 
         this.buttonGuess = true;
+        this.showSummery = false;
+        this.showLanding = true;
     }
 
 }
