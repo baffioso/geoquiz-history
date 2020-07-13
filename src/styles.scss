@@ -15,8 +15,12 @@ body {
   text-align: center;
   color: snow;
 
+  h3 {
+    margin: 0px;
+  }
+
   a:link, a:visited {
-    color: rgb(238, 238, 238);
+    color: rgb(255, 254, 254);
     text-align: center;
     // text-decoration: none;
   }

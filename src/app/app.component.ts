@@ -78,10 +78,16 @@ export class AppComponent implements OnInit {
 
         // Add popup
         const name = feature.properties.name;
-        const wikiId = feature.properties.wikidata;
+        const wd = feature.properties.wikidata;
+        const wp = feature.properties.wikipedia;
+
         let html;
-        if (wikiId) {
-            html = `<h3>${name}</h3><a href=https://www.wikidata.org/wiki/${wikiId} target="_blank">Wikidata</a>`;
+        if (wp && wp.length > 0) {
+            const wps = wp.split(':');
+            // tslint:disable-next-line:max-line-length
+            html = `<h3>${name}</h3><a href=https://${wps[0]}.wikipedia.org/wiki/${wps[1].split(' ').join('_')} target="_blank">Wikipedia</a>`;
+        } else if (wd) {
+            html = `<h3>${name}</h3><a href=https://www.wikidata.org/wiki/${wd} target="_blank">Wikidata</a>`;
         } else {
             html = `<h3>${name}</h3>`;
         }
