@@ -1,3 +1,10 @@
+.back {
+    position: fixed;
+    top:5px;
+    right: 5px;
+    z-index: 2;
+}
+
 .question {
     position: fixed;
     padding-left: 20px;
@@ -29,6 +36,7 @@
         text-transform: uppercase;
         font-family: 'Fredericka the Great', cursive !important;
         width: 200px;
+        background-image: url('../assets/btn.jpeg');
 
         h3 {
             margin: 5px;

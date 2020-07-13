@@ -83,47 +83,49 @@ export class MapService {
     }
 
     addLineToMap(line: any, dist: number) {
-        if (this.map.getLayer('line')) {
-            (this.map.getSource('line') as GeoJSONSource).setData(line);
-        } else {
-            this.map.addSource('line', {
-                'type': 'geojson',
-                'data': line
-            });
 
-            this.map.addLayer({
-                id: 'line',
-                type: 'line',
-                source: 'line',
-                layout: {},
-                paint: {
-                    'line-color': '#f08',
-                    'line-width': 4,
-                    'line-dasharray': [2, 1]
-                }
-            });
+        this.map.addSource('line', {
+            'type': 'geojson',
+            'data': line
+        });
 
-            this.map.addLayer({
-                id: 'line-label',
-                type: 'symbol',
-                source: 'line',
-                layout: {
-                    'text-field': `${String(Math.round(dist))} km`,
-                    'symbol-placement': 'line-center'
-                },
-                paint: {
-                    'text-color': '#f08',
-                    'text-halo-color': 'white',
-                    'text-halo-width': 3
-                }
-            });
-        }
+        this.map.addLayer({
+            id: 'line',
+            type: 'line',
+            source: 'line',
+            layout: {},
+            paint: {
+                'line-color': '#f08',
+                'line-width': 4,
+                'line-dasharray': [2, 1]
+            }
+        });
+
+        this.map.addLayer({
+            id: 'line-label',
+            type: 'symbol',
+            source: 'line',
+            layout: {
+                'text-field': `${String(Math.round(dist))} km`,
+                'symbol-placement': 'line-center'
+            },
+            paint: {
+                'text-color': '#f08',
+                'text-halo-color': 'white',
+                'text-halo-width': 3
+            }
+        });
     }
 
     removeLine() {
-        this.map.removeLayer('line');
-        this.map.removeLayer('line-label');
-        this.map.removeSource('line');
+        if (this.map.getLayer('line')) {
+            this.map.removeLayer('line');
+            this.map.removeLayer('line-label');
+        }
+
+        if (this.map.getSource('line')) {
+            this.map.removeSource('line');
+        }
     }
 
     zoomTo(geom) {

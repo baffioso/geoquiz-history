@@ -1,4 +1,7 @@
 <app-landing *ngIf="showLanding" [categories]="categories" (selectedCategory)="selectedCategory($event)"></app-landing>
+<button mat-icon-button class="back" *ngIf="!showLanding" (click)="playAgain()">
+    <mat-icon>chevron_left</mat-icon>
+</button>
 <div *ngIf="!showLanding" class="question">
     <p>{{index+1}}/{{questionNum}}</p>
     <h2 *ngIf="index < questionNum">

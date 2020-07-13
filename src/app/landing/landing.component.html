@@ -1,14 +1,16 @@
 <div class="landing">
     <div class="intro">
         <h2>Velkommen til Geoquiz</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur tempore animi perspiciatis nemo doloribus
-            molestiae, quidem, facere voluptates mollitia quasi magni ut aspernatur totam repudiandae nobis est ipsam!
-            Hic, itaque?</p>
+        <p>Gæt steder i Danmark ved at sætte en markør på kortet og klik derefter GÆT. Data kommer fra <a
+                href="https://www.openstreetmap.org" target="_blank">Open Street Map</a></p>
         <p>Vælg en kategori herunder</p>
     </div>
     <div class="categories">
         <div *ngFor="let cat of categories">
-            <button mat-flat-button (click)="selected(cat.id)">{{cat.name}}</button>
+            <button mat-flat-button (click)="selected(cat.id)">
+                <!-- <mat-icon>{{cat.icon}}</mat-icon> -->
+                {{cat.name}}
+            </button>
         </div>
 
     </div>

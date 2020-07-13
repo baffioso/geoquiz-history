@@ -24,9 +24,9 @@ export class AppComponent implements OnInit {
     features: any;
     questionNum = 10;
     categories = [
-        { name: 'Museer', id: 'museum' },
-        { name: 'Stadioner', id: 'stadion' },
-        { name: 'Broer', id: 'bro' }
+        { name: 'Museer', id: 'museum', icon: 'museum' },
+        { name: 'Stadioner', id: 'stadion', icon: 'sports_soccer' },
+        // { name: 'Broer', id: 'bro', icon: 'domain' }
     ];
 
     constructor(private mapService: MapService) { }
@@ -60,7 +60,6 @@ export class AppComponent implements OnInit {
         }
 
         this.randomLocations = this.mapService.getRandomLocations(this.features, this.questionNum);
-        console.log(id);
     }
 
     answer() {
@@ -113,13 +112,12 @@ export class AppComponent implements OnInit {
 
     handleSummery() {
         this.showSummery = true;
-        this.totalDistance = this.distance.reduce((acc, cur) => acc + cur);
+        this.totalDistance = Math.round(this.distance.reduce((acc, cur) => acc + cur));
     }
 
     playAgain() {
         this.index = 0;
         this.distance = [];
-        this.randomLocations = this.mapService.getRandomLocations(this.features, 10);
 
         // Remove popup, marker and line
         this.mapService.marker.remove();

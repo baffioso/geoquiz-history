@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-    @Input() categories: { name: string, id: string }[];
+    @Input() categories: { name: string, id: string, icon: string }[];
     @Output() selectedCategory = new EventEmitter();
     constructor() { }
 
