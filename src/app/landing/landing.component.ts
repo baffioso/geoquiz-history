@@ -7,13 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
     @Input() categories: { name: string, id: string, icon: string }[];
-    @Output() selectedCategory = new EventEmitter();
+    @Output() selectCategory = new EventEmitter();
     constructor() { }
 
     ngOnInit() {
     }
 
     selected(id) {
-        this.selectedCategory.emit(id);
+        this.selectCategory.emit(id);
     }
 }

@@ -1,11 +1,12 @@
-<app-landing *ngIf="showLanding" [categories]="categories" (selectedCategory)="selectedCategory($event)"></app-landing>
+<app-landing *ngIf="showLanding" [categories]="categories" (selectCategory)="selectCategory($event)"></app-landing>
 <button mat-icon-button class="back" *ngIf="!showLanding" (click)="playAgain()">
     <mat-icon>chevron_left</mat-icon>
 </button>
 <div *ngIf="!showLanding" class="question">
     <p>{{index+1}}/{{questionNum}}</p>
     <h2 *ngIf="index < questionNum">
-        Hvor ligger <span class="location">{{randomLocations[index].properties.name}}</span>?
+        Hvor ligger <span class="location">{{randomLocations[index].properties.name}}</span> <span
+            *ngIf="selectedCategory==='station'"> Station</span>?
     </h2>
 </div>
 <div *ngIf="!showLanding" class="btn">

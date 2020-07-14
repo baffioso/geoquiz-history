@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
         { name: 'Stadioner', id: 'stadion', icon: 'sports_soccer' },
         // { name: 'Broer', id: 'bro', icon: 'domain' },
     ];
+    selectedCategory: string;
 
     constructor(private mapService: MapService) { }
 
@@ -43,21 +44,25 @@ export class AppComponent implements OnInit {
         }
     }
 
-    selectedCategory(id: string) {
+    selectCategory(id: string) {
         this.showLanding = false;
 
         switch (id) {
             case 'museum':
                 this.features = museum.features;
+                this.selectedCategory = id;
                 break;
             case 'bro':
                 this.features = bro.features;
+                this.selectedCategory = id;
                 break;
             case 'stadion':
                 this.features = stadion.features;
+                this.selectedCategory = id;
                 break;
             case 'station':
                 this.features = station.features;
+                this.selectedCategory = id;
                 break;
             default:
                 break;
@@ -85,7 +90,8 @@ export class AppComponent implements OnInit {
         const wd = feature.properties.wikidata;
         const wp = feature.properties.wikipedia;
 
-        let html;
+        // Logic for popup html choos
+        let html: string;
         if (wp && wp.length > 0) {
             const wps = wp.split(':');
             // tslint:disable-next-line:max-line-length
