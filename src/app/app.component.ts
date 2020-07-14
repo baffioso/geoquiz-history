@@ -5,7 +5,7 @@ import { MapService } from './map/map.service';
 import { museum } from '../assets/museum';
 import { stadion } from '../assets/stadion';
 import { bro } from '../assets/bro';
-
+import { station } from '../assets/station';
 
 @Component({
     selector: 'app-root',
@@ -25,8 +25,9 @@ export class AppComponent implements OnInit {
     questionNum = 10;
     categories = [
         { name: 'Museer', id: 'museum', icon: 'museum' },
+        { name: 'Jernbanestationer', id: 'station', icon: 'domain' },
         { name: 'Stadioner', id: 'stadion', icon: 'sports_soccer' },
-        // { name: 'Broer', id: 'bro', icon: 'domain' }
+        // { name: 'Broer', id: 'bro', icon: 'domain' },
     ];
 
     constructor(private mapService: MapService) { }
@@ -54,6 +55,9 @@ export class AppComponent implements OnInit {
                 break;
             case 'stadion':
                 this.features = stadion.features;
+                break;
+            case 'station':
+                this.features = station.features;
                 break;
             default:
                 break;
