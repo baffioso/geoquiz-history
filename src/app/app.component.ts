@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
     title = 'geoquiz';
     showLanding = true;
     showLoading = false;
+    showSummery = false;
     randomLocations: Feature[];
     index = 0;
     buttonGuess = true;
     distance: number[] = [];
     totalDistance: number;
-    showSummery = false;
     features: any;
     questionNum = 10;
     categories = [
@@ -56,10 +56,6 @@ export class AppComponent implements OnInit {
         switch (id) {
             case 'museum':
                 this.features = museum.features;
-                this.selectedCategory = id;
-                break;
-            case 'bro':
-                this.features = bro.features;
                 this.selectedCategory = id;
                 break;
             case 'stadion':
