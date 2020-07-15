@@ -130,7 +130,7 @@ export class MapService {
 
     zoomTo(geom) {
         const bounds = bbox(geom) as LngLatBoundsLike;
-        this.map.fitBounds(bounds, { padding: 80 });
+        this.map.fitBounds(bounds, { padding: 150 });
     }
 
     flyToDK() {

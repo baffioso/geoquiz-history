@@ -4,7 +4,6 @@ import { Feature } from 'geojson';
 import { MapService } from './map/map.service';
 import { museum } from '../assets/museum';
 import { stadion } from '../assets/stadion';
-import { bro } from '../assets/bro';
 import { station } from '../assets/station';
 
 @Component({
@@ -15,6 +14,7 @@ import { station } from '../assets/station';
 export class AppComponent implements OnInit {
     title = 'geoquiz';
     showLanding = true;
+    showLoading = false;
     randomLocations: Feature[];
     index = 0;
     buttonGuess = true;
@@ -46,6 +46,12 @@ export class AppComponent implements OnInit {
 
     selectCategory(id: string) {
         this.showLanding = false;
+        this.showLoading = true;
+
+        // remove loading after 2 sec
+        setTimeout(() => {
+            this.showLoading = false;
+        }, 2000);
 
         switch (id) {
             case 'museum':

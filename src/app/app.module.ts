@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { SummeryComponent } from './summery/summery.component';
 import { LandingComponent } from './landing/landing.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [AppComponent, MapComponent, SummeryComponent, LandingComponent],
+  declarations: [AppComponent, MapComponent, SummeryComponent, LandingComponent, LoadingComponent],
   imports: [BrowserModule, MatButtonModule, MatIconModule],
   providers: [],
   bootstrap: [AppComponent],

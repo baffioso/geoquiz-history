@@ -1,20 +1,21 @@
 <app-landing *ngIf="showLanding" [categories]="categories" (selectCategory)="selectCategory($event)"></app-landing>
+<app-loading *ngIf="showLoading"></app-loading>
 <button mat-icon-button class="back" *ngIf="!showLanding" (click)="playAgain()">
     <mat-icon>chevron_left</mat-icon>
 </button>
-<div *ngIf="!showLanding" class="question">
+<div *ngIf="!showLanding && !showLoading" class="question">
     <p>{{index+1}}/{{questionNum}}</p>
     <h2 *ngIf="index < questionNum">
         Hvor ligger <span class="location">{{randomLocations[index].properties.name}}</span> <span
             *ngIf="selectedCategory==='station'"> Station</span>?
     </h2>
 </div>
-<div *ngIf="!showLanding" class="btn">
-    <button *ngIf="index < questionNum" mat-flat-button (click)="onClick()">
-        <h3>{{buttonGuess ? 'Gæt' : 'Næste'}}</h3>
+<div *ngIf="!showLanding && !showLoading" class="btn">
+    <button *ngIf="index < questionNum" mat-raised-button (click)="onClick()">
+        <h2>{{buttonGuess ? 'Gæt' : 'Næste'}}</h2>
     </button>
-    <button *ngIf="index >= questionNum" mat-flat-button (click)="handleSummery()">
-        <h3>se resultat</h3>
+    <button *ngIf="index >= questionNum" mat-raised-button (click)="handleSummery()">
+        <h2>se resultat</h2>
     </button>
 </div>
 <app-summery *ngIf="showSummery" [distance]="totalDistance" (replay)="playAgain()"></app-summery>
