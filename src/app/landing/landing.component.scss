@@ -1,8 +1,10 @@
+@import "../../variables.scss";
+
 .landing {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(124, 122, 122, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 10;
     display: flex;
     justify-content: center;
@@ -12,7 +14,7 @@
 
 .intro {
     text-align: center;
-    color: white;
+    color: $fourth-color;
     margin: 0px 10px;
 
     h2 {
@@ -26,11 +28,10 @@
         // text-align: left;
         margin: 10px;
         width: 200px;
-        background-image: url('../../assets/btn.jpeg');
-        background-color: rgba(255, 250, 250, 0.418);
-        font-family: 'Fredericka the Great', cursive;
+        background-color: $main-color;
+        font-family: $main-font;
         font-size: large;
-        color: rgb(49, 49, 49);
+        color: $fourth-color;
         padding: 10px;
     }
 }
@@ -42,6 +43,6 @@
     bottom: 10px;
     a {
         text-decoration: none;
-        color: rgb(254, 255, 198);
+        color: $fourth-color;
     }
 }

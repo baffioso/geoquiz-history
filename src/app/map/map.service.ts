@@ -10,10 +10,10 @@ import { environment } from '../../environments/environment';
 })
 export class MapService {
     map: Map;
-    style = 'mapbox://styles/baffioso/ckch86rut1u3k1im4lyfti1l8';
-    center = [11, 55.5];
-    zoom = 5;
-    marker = new Marker({ color: 'black' });
+    style = 'mapbox://styles/baffioso/ckcnttep50z221iro41ka5jt4';
+    center = [12.5548, 55.6774];
+    zoom = 11;
+    marker = new Marker({ color: '#e8505b' });
     popup = new Popup({ closeButton: false });
     currentLocation: LngLatLike;
 
@@ -95,7 +95,7 @@ export class MapService {
             source: 'line',
             layout: {},
             paint: {
-                'line-color': '#f08',
+                'line-color': '#e8505b',
                 'line-width': 4,
                 'line-dasharray': [2, 1]
             }
@@ -106,13 +106,13 @@ export class MapService {
             type: 'symbol',
             source: 'line',
             layout: {
-                'text-field': `${String(Math.round(dist))} km`,
+                'text-field': Math.round(dist) === 0 ? `${String(Math.round(dist * 1000))} m` : `${String(Math.round(dist))} km`,
                 'symbol-placement': 'line-center'
             },
             paint: {
-                'text-color': '#f08',
-                'text-halo-color': 'white',
-                'text-halo-width': 3
+                'text-color': '#e8505b',
+                'text-halo-color': '#f3ecc2',
+                'text-halo-width': 2
             }
         });
     }

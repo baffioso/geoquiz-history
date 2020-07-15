@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./variables.scss";
+
 html,
 body {
   height: 100%;
@@ -6,30 +8,26 @@ body {
 }
 body {
   margin: 0;
-  font-family: 'Fredericka the Great', sans-serif;
-  // font-family: 'Raleway', sans-serif;
-  // font-family: 'Amatic SC', cursive;
-  // font-family: 'Special Elite', cursive;
-  // font-family: 'Nothing You Could Do', cursive;
+  font-family: $main-font;
 }
 
 .mapboxgl-popup-content {
-  font-family: 'Fredericka the Great', cursive;
-  background-color: rgba(96, 96, 96, 0.26);
+  font-family: $main-font;
+  background-color: rgba(96, 96, 96, 0.4);
   text-align: center;
-  color: snow;
+  color: $fourth-color;
 
   h3 {
     margin: 0px;
   }
 
   a:link, a:visited {
-    color: rgb(255, 254, 254);
+    color: $second-color;
     text-align: center;
     // text-decoration: none;
   }
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-  border-top-color: #f08;
+  border-top-color: $main-color;
 }

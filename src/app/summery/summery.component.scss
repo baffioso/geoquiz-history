@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .summary {
     position: fixed;
     width: 100%;
@@ -12,15 +14,18 @@
 
 .item {
     text-align: center;
-    color: white;
+    color: $fourth-color;
 
     h1 > span {
-        color: rgb(236, 9, 168);
+        color: $main-color;
     }
 
     button {
         text-transform: uppercase;
-        font-family: 'Fredericka the Great', cursive !important;
+        background-color: $main-color;
+        color: $fourth-color;
+        font-size: large;
+        font-family: $main-font !important;
     }
 }
 

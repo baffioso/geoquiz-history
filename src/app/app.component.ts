@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Feature } from 'geojson';
 
 import { MapService } from './map/map.service';
-import { museum } from '../assets/museum';
-import { stadion } from '../assets/stadion';
-import { station } from '../assets/station';
+import { bar } from '../assets/bar';
 
 @Component({
     selector: 'app-root',
@@ -24,10 +22,7 @@ export class AppComponent implements OnInit {
     features: any;
     questionNum = 10;
     categories = [
-        { name: 'Museer', id: 'museum', icon: 'museum' },
-        { name: 'Jernbanestationer', id: 'station', icon: 'domain' },
-        { name: 'Stadioner', id: 'stadion', icon: 'sports_soccer' },
-        // { name: 'Broer', id: 'bro', icon: 'domain' },
+        { name: 'Bar', id: 'bar', icon: 'museum' },
     ];
     selectedCategory: string;
 
@@ -54,18 +49,18 @@ export class AppComponent implements OnInit {
         }, 2000);
 
         switch (id) {
-            case 'museum':
-                this.features = museum.features;
+            case 'bar':
+                this.features = bar.features;
                 this.selectedCategory = id;
                 break;
-            case 'stadion':
-                this.features = stadion.features;
-                this.selectedCategory = id;
-                break;
-            case 'station':
-                this.features = station.features;
-                this.selectedCategory = id;
-                break;
+            // case 'stadion':
+            //     this.features = stadion.features;
+            //     this.selectedCategory = id;
+            //     break;
+            // case 'station':
+            //     this.features = station.features;
+            //     this.selectedCategory = id;
+            //     break;
             default:
                 break;
         }
