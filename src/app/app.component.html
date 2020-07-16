@@ -4,7 +4,7 @@
     <mat-icon>chevron_left</mat-icon>
 </button>
 <div *ngIf="!showLanding && !showLoading" class="question">
-    <p>{{index+1}}/{{questionNum}}</p>
+    <p class="count">{{index+1}}/{{questionNum}}</p>
     <h1 *ngIf="index < questionNum">
         Hvor ligger <span class="location">{{randomLocations[index].properties.name}}</span> <span
             *ngIf="selectedCategory==='station'"> Station</span>?

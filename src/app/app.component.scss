@@ -13,10 +13,10 @@
     padding-left: 20px;
     z-index: 1;
     pointer-events: none;
-    ba
 
     p {
         margin-bottom: 5px;
+        color: $third-color;
     }
 
     h1 {
@@ -25,13 +25,15 @@
     }
 }
 
+
+
 .location {
     color: $main-color;
 }
 
 .btn {
     position: fixed;
-    bottom: 30px;
+    bottom: 38px;
     z-index: 1;
     text-align: center;
     width: 100%;
@@ -40,7 +42,7 @@
         text-transform: uppercase;
         font-family: $main-font !important;
         width: 200px;
-        background-color: rgba($main-color, 0.9);
+        background-color: rgba($main-color, 1);
         color: $fourth-color;
         h3 {
             margin: 5px;
