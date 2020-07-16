@@ -4,6 +4,7 @@ import { Feature } from 'geojson';
 import { MapService } from './map/map.service';
 import { bar } from '../assets/bar';
 import { kebab } from '../assets/kebab';
+import { club } from '../assets/club';
 
 @Component({
     selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
     features: any;
     questionNum = 10;
     categories = [
-        { name: 'Barer', id: 'bar', icon: 'museum' },
+        { name: 'Bar', id: 'bar', icon: 'museum' },
+        { name: 'Natklub', id: 'club', icon: 'museum' },
         { name: 'Kebab', id: 'kebab', icon: 'museum' },
 
     ];
@@ -60,10 +62,10 @@ export class AppComponent implements OnInit {
                 this.features = kebab.features;
                 this.selectedCategory = id;
                 break;
-            // case 'station':
-            //     this.features = station.features;
-            //     this.selectedCategory = id;
-            //     break;
+            case 'club':
+                this.features = club.features;
+                this.selectedCategory = id;
+                break;
             default:
                 break;
         }

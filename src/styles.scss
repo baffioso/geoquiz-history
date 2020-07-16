@@ -31,3 +31,13 @@ body {
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
   border-top-color: $main-color;
 }
+
+.mapboxgl-ctrl-group {
+  background-color: $fourth-color !important;
+}
+
+.mapboxgl-ctrl-logo {
+  svg {
+    fill: 'black' !important;
+  }
+}
