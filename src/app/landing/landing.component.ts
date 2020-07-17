@@ -7,6 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
     @Input() categories: { name: string, id: string, icon: string }[];
+    @Input() questionsNum: number;
+
     @Output() selectCategory = new EventEmitter();
     constructor() { }
 

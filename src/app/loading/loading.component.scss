@@ -19,9 +19,12 @@
     .item {
         text-align: center;
         color: $fourth-color;
+
+        .num {
+          color: $third-color;
+        }
     }
 }
-
 
 .lds-roller {
     display: inline-block;

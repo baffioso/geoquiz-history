@@ -5,6 +5,7 @@ import { MapService } from './map/map.service';
 import { bar } from '../assets/bar';
 import { kebab } from '../assets/kebab';
 import { club } from '../assets/club';
+import { Loading, Category } from './interfaces';
 
 @Component({
     selector: 'app-root',
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
 
     ];
     selectedCategory: string;
+    loadingData: Loading;
 
     constructor(private mapService: MapService) { }
 
@@ -53,6 +55,8 @@ export class AppComponent implements OnInit {
             this.showLoading = false;
         }, 2000);
 
+        console.log(this.getCategoryFromId(id));
+
         switch (id) {
             case 'bar':
                 this.features = bar.features;
@@ -70,7 +74,14 @@ export class AppComponent implements OnInit {
                 break;
         }
 
+        this.loadingData = {
+            category: this.getCategoryFromId(id).name,
+            questionNum: this.questionNum,
+            featureCount: this.features.length
+        };
+
         this.randomLocations = this.mapService.getRandomLocations(this.features, this.questionNum);
+
     }
 
     answer() {
@@ -147,6 +158,10 @@ export class AppComponent implements OnInit {
         this.buttonGuess = true;
         this.showSummery = false;
         this.showLanding = true;
+    }
+
+    getCategoryFromId(id: string): Category {
+        return this.categories.find(x => x.id === id);
     }
 
 }
