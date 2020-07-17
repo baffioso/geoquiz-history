@@ -1,12 +1,14 @@
 <div class="landing">
+    <div class="stamp is-draft">
+        KBH EDITION
+    </div>
     <div class="intro">
-        <h2>Velkommen til Geoquiz</h2>
-        <p>Hvor godt kender du dødsruterne i København? Her er den ultimative
-            geoquiz, hvor du får {{questionsNum}} placeringsspørgsmål inden for den kategori du vælger nedenfor. Når en
-            runde er slut kan du selvfølgelig tage en ny omgang. Kan du slå din drinking buddies?</p>
-        <p>Sæt en markør på kortet og klik derefter <span>GÆT</span>
+        <h2>Velkommen til <span>Geoquiz</span></h2>
+        <p>Hvor godt kender du dødsruterne i København?</p>
+        <p>
+            Her er den ultimative geoquiz, hvor du skal bestemme placeringen af {{questionsNum}} steder. Kan du slå dine
+            drinking buddies i en af kategorierne?
         </p>
-
     </div>
     <div class="categories">
         <div *ngFor="let cat of categories">
@@ -16,6 +18,11 @@
             </button>
         </div>
 
+    </div>
+    <div class="help">
+        <p>
+            <span><strong>Sådan gør du:</strong></span> Sæt en markør på kortet og klik derefter GÆT
+        </p>
     </div>
     <div class="attribution">
         <p>
