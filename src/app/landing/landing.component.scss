@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;    
+    flex-direction: column;
 }
 
 .stamp {
@@ -62,6 +62,8 @@
 }
 
 .help {
+
+    text-align: center;
     span {
         color: $third-color
     }
