@@ -10,9 +10,9 @@ import { environment } from '../../environments/environment';
 })
 export class MapService {
     map: Map;
-    style = 'mapbox://styles/baffioso/ckcnttep50z221iro41ka5jt4';
-    center = [12.5548, 55.6774];
-    zoom = 11;
+    style = 'mapbox://styles/baffioso/ckct0ei9q2cfd1imtcb118uos';
+    center = [0, 25];
+    zoom = 1;
     marker = new Marker({ color: '#e8505b' });
     popup = new Popup({ closeButton: false });
     currentLocation: LngLatLike;

@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Feature } from 'geojson';
 
 import { MapService } from './map/map.service';
-import { bar } from '../assets/bar';
-import { kebab } from '../assets/kebab';
-import { club } from '../assets/club';
+import { battle } from '../assets/battle';
 import { Loading, Category } from './interfaces';
 
 @Component({
@@ -25,10 +23,7 @@ export class AppComponent implements OnInit {
     features: any;
     questionNum = 10;
     categories = [
-        { name: 'Bar', id: 'bar', icon: 'museum' },
-        { name: 'Natklub', id: 'club', icon: 'museum' },
-        { name: 'Kebab', id: 'kebab', icon: 'museum' },
-
+        { name: 'Battle', id: 'battle', icon: 'museum' },
     ];
     selectedCategory: string;
     loadingData: Loading;
@@ -58,16 +53,8 @@ export class AppComponent implements OnInit {
         console.log(this.getCategoryFromId(id));
 
         switch (id) {
-            case 'bar':
-                this.features = bar.features;
-                this.selectedCategory = id;
-                break;
-            case 'kebab':
-                this.features = kebab.features;
-                this.selectedCategory = id;
-                break;
-            case 'club':
-                this.features = club.features;
+            case 'battle':
+                this.features = battle.features;
                 this.selectedCategory = id;
                 break;
             default:
@@ -110,7 +97,7 @@ export class AppComponent implements OnInit {
             // tslint:disable-next-line:max-line-length
             html = `<h3>${name}</h3><a href=https://${wps[0]}.wikipedia.org/wiki/${wps[1].split(' ').join('_')} target="_blank">Wikipedia</a>`;
         } else if (wd) {
-            html = `<h3>${name}</h3><a href=https://www.wikidata.org/wiki/${wd} target="_blank">Wikidata</a>`;
+            html = `<h3>${name}</h3><a href=${wd} target="_blank">Wikidata</a>`;
         } else {
             html = `<h3>${name}</h3>`;
         }

@@ -7,15 +7,15 @@
 <div *ngIf="!showLanding && !showLoading && !showSummery" class="question">
     <p class="count">{{index+1}}/{{questionNum}}</p>
     <h1 *ngIf="index < questionNum">
-        Hvor ligger <span class="location">{{randomLocations[index].properties.name}}</span>?
+        Where was <span class="location">{{randomLocations[index].properties.name}}</span>?
     </h1>
 </div>
 <div *ngIf="!showLanding && !showLoading && !showSummery" class="btn">
     <button *ngIf="index < questionNum" mat-raised-button (click)="onClick()">
-        <h2>{{buttonGuess ? 'Gæt' : 'Næste'}}</h2>
+        <h2>{{buttonGuess ? 'guess' : 'next'}}</h2>
     </button>
     <button *ngIf="index >= questionNum" mat-raised-button (click)="handleSummery()">
-        <h2>se resultat</h2>
+        <h2>Se result</h2>
     </button>
 </div>
 <app-summery *ngIf="showSummery" [distance]="totalDistance" (replay)="playAgain()"></app-summery>
