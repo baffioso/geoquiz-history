@@ -9,6 +9,7 @@
     <h1 *ngIf="index < questionNum">
         Where was <span class="location">{{randomLocations[index].properties.name}}</span>?
     </h1>
+    <p class="war"><span>{{randomLocations[index].properties.war}}</span></p>
 </div>
 <div *ngIf="!showLanding && !showLoading && !showSummery" class="btn">
     <button *ngIf="index < questionNum" mat-raised-button (click)="onClick()">

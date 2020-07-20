@@ -55,7 +55,7 @@ export class MapService {
 
     }
 
-    getRandomLocations(features: any, n: number) {
+    getRandomLocations(features: any[], n: number) {
         const result = new Array(n);
         let len = features.length;
         const taken = new Array(len);

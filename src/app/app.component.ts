@@ -50,8 +50,6 @@ export class AppComponent implements OnInit {
             this.showLoading = false;
         }, 2000);
 
-        console.log(this.getCategoryFromId(id));
-
         switch (id) {
             case 'battle':
                 this.features = battle.features;
@@ -67,8 +65,18 @@ export class AppComponent implements OnInit {
             featureCount: this.features.length
         };
 
-        this.randomLocations = this.mapService.getRandomLocations(this.features, this.questionNum);
+        // raing 1 is easy 0 is hard
+        const easy = this.mapService.getRandomLocations(
+            this.features.filter(x => x['properties']['rating'] === 1),
+            Math.round(this.questionNum / 2)
+        );
+        const hard = this.mapService.getRandomLocations(
+            this.features.filter(x => x['properties']['rating'] === 0),
+            Math.round(this.questionNum / 2)
+        );
 
+        // combine and shuffle
+        this.randomLocations = easy.concat(hard).sort(() => Math.random() - 0.5);
     }
 
     answer() {
@@ -93,9 +101,8 @@ export class AppComponent implements OnInit {
         // Logic for popup html choos
         let html: string;
         if (wp && wp.length > 0) {
-            const wps = wp.split(':');
             // tslint:disable-next-line:max-line-length
-            html = `<h3>${name}</h3><a href=https://${wps[0]}.wikipedia.org/wiki/${wps[1].split(' ').join('_')} target="_blank">Wikipedia</a>`;
+            html = `<h3>${name}</h3><a href=${wp} target="_blank">Wikipedia</a>`;
         } else if (wd) {
             html = `<h3>${name}</h3><a href=${wd} target="_blank">Wikidata</a>`;
         } else {
