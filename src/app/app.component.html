@@ -16,8 +16,9 @@
         <h2>{{buttonGuess ? 'guess' : 'next'}}</h2>
     </button>
     <button *ngIf="index >= questionNum" mat-raised-button (click)="handleSummery()">
-        <h2>Se result</h2>
+        <h2>Result</h2>
     </button>
 </div>
-<app-summery *ngIf="showSummery" [distance]="totalDistance" (replay)="playAgain()"></app-summery>
+<app-summery *ngIf="showSummery" [distance]="totalDistance" [links]="randomLocations" (replay)="playAgain()">
+</app-summery>
 <app-map></app-map>

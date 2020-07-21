@@ -2,6 +2,16 @@
     <div class="item">
         <h1>You guessed <span>{{distance}}</span> kilometers wrong</h1>
         <br><br>
+    </div>
+    <div class="links">
+        <p>Wikipedia link to battles</p>
+        <ol>
+            <li *ngFor="let link of links">
+                <a [href]="link['properties']['wikipedia']">{{link['properties']['name']}}</a>
+            </li>
+        </ol>
+    </div>
+    <div class="play-again">
         <button mat-flat-button (click)="playAgain()">TRY AGAIN?</button>
     </div>
 </div>

@@ -20,6 +20,12 @@
         color: $main-color;
     }
 
+
+}
+
+.play-again {
+    margin-top: 20px;
+
     button {
         text-transform: uppercase;
         background-color: $main-color;
@@ -30,3 +36,14 @@
     }
 }
 
+.links {
+    color: $third-color;
+
+    li {
+        padding-bottom: 10px;
+        font-size: medium;
+    }
+    a:link {
+        color: $fourth-color;
+    }
+}

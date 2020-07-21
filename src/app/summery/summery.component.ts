@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SummeryComponent implements OnInit {
   @Input() distance: number;
+  @Input() links: any[];
   @Output() replay = new EventEmitter();
 
   constructor() { }

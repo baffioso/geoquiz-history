@@ -4,6 +4,7 @@ import { Feature } from 'geojson';
 import { MapService } from './map/map.service';
 import { battle } from '../assets/battle';
 import { Loading, Category } from './interfaces';
+import { WikipediaService } from './wikipedia.service';
 
 @Component({
     selector: 'app-root',
@@ -28,9 +29,11 @@ export class AppComponent implements OnInit {
     selectedCategory: string;
     loadingData: Loading;
 
-    constructor(private mapService: MapService) { }
+    constructor(private mapService: MapService) {
+    }
 
     ngOnInit(): void {
+        // this.wikiService.getExcerpt('stack_overflow').subscribe()
     }
 
     onClick() {
