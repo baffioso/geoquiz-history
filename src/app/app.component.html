@@ -4,7 +4,7 @@
 <button mat-icon-button class="back" *ngIf="!showLanding" (click)="playAgain()">
     <mat-icon>chevron_left</mat-icon>
 </button>
-<div *ngIf="!showLanding && !showLoading && !showSummery" class="question">
+<div *ngIf="showQuestion" class="question">
     <p class="count">{{index+1}}/{{questionNum}}</p>
     <h1 *ngIf="index < questionNum">
         Where was <span class="location">{{randomLocations[index].properties.name}}</span>?

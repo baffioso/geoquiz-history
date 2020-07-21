@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
     title = 'geoquiz';
     showLanding = true;
     showLoading = false;
+    showQuestion = false;
     showSummery = false;
     randomLocations: Feature[];
     index = 0;
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
         // remove loading after 2 sec
         setTimeout(() => {
             this.showLoading = false;
+            this.showQuestion = true;
         }, 2000);
 
         switch (id) {
@@ -80,6 +82,7 @@ export class AppComponent implements OnInit {
 
         // combine and shuffle
         this.randomLocations = easy.concat(hard).sort(() => Math.random() - 0.5);
+        console.log(this.randomLocations)
     }
 
     answer() {
@@ -117,6 +120,7 @@ export class AppComponent implements OnInit {
         this.buttonGuess = false;
 
         if (this.index === this.questionNum - 1) {
+            this.showQuestion = false;
             this.index = ++this.index;
         }
     }
