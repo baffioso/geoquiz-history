@@ -38,6 +38,11 @@
 
 .links {
     color: $third-color;
+    padding: 10px;
+
+    p {
+        text-align: center;
+    }
 
     li {
         padding-bottom: 10px;

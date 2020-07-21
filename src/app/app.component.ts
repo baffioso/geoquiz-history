@@ -6,6 +6,7 @@ import { battle } from '../assets/battle';
 import { heritage } from 'src/assets/heritage';
 import { Loading, Category } from './interfaces';
 import { WikipediaService } from './wikipedia.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -32,11 +33,12 @@ export class AppComponent implements OnInit {
     selectedCategory: string;
     loadingData: Loading;
 
-    constructor(private mapService: MapService) {
-    }
+    constructor(
+        private mapService: MapService,
+        private wikiService: WikipediaService
+    ) { }
 
     ngOnInit(): void {
-        // this.wikiService.getExcerpt('stack_overflow').subscribe();
     }
 
     onClick() {
@@ -88,7 +90,6 @@ export class AppComponent implements OnInit {
 
         // combine and shuffle
         this.randomLocations = easy.concat(hard).sort(() => Math.random() - 0.5);
-        console.log(this.randomLocations)
     }
 
     answer() {
@@ -110,18 +111,26 @@ export class AppComponent implements OnInit {
         const wd = feature.properties.wikidata;
         const wp = feature.properties.wikipedia;
 
-        // Logic for popup html choos
-        let html: string;
-        if (wp && wp.length > 0) {
-            // tslint:disable-next-line:max-line-length
-            html = `<h3>${name}</h3><a href=${wp} target="_blank">Wikipedia</a>`;
-        } else if (wd) {
-            html = `<h3>${name}</h3><a href=${wd} target="_blank">Wikidata</a>`;
-        } else {
-            html = `<h3>${name}</h3>`;
-        }
+        const wpPage = wp.split('/')[wp.split('/').length - 1];
 
-        this.mapService.addPopup(answerCoords, html);
+        // Get excerpt and build/add popup
+        this.wikiService.getExcerpt(wpPage)
+            .pipe(
+                tap(res => {
+                    let html: string;
+                    if (wp && wp.length > 0) {
+                        // tslint:disable-next-line:max-line-length
+                        html = `<h3>${name}</h3>${res}<a href=${wp} target="_blank">read more</a>`;
+                    } else if (wd) {
+                        html = `<h3>${name}</h3>${res}<a href=${wd} target="_blank">Wikidata</a>`;
+                    } else {
+                        html = `<h3>${name}</h3>${res}`;
+                    }
+
+                    this.mapService.addPopup(answerCoords, html);
+                })
+            )
+            .subscribe();
 
         this.buttonGuess = false;
 
@@ -148,6 +157,14 @@ export class AppComponent implements OnInit {
 
     handleSummery() {
         this.showSummery = true;
+        this.showQuestion = false;
+
+        // Remove popup, marker and line
+        this.mapService.marker.remove();
+        this.mapService.popup.remove();
+        this.mapService.removeLine();
+
+        // Calculate total distance
         this.totalDistance = Math.round(this.distance.reduce((acc, cur) => acc + cur));
     }
 
@@ -155,10 +172,6 @@ export class AppComponent implements OnInit {
         this.index = 0;
         this.distance = [];
 
-        // Remove popup, marker and line
-        this.mapService.marker.remove();
-        this.mapService.popup.remove();
-        this.mapService.removeLine();
         this.mapService.currentLocation = null;
         this.mapService.flyToDK();
 
