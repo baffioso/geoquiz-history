@@ -9,10 +9,7 @@ export class WikipediaService {
 
   constructor(private http: HttpClient) { }
 
-  getExcerpt(wikiId) {
-    return this.http.get(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=1&exchars=100&titles=${wikiId}&format=json`)
-      .pipe(
-        map(console.log)
-      )
+  getExcerpt(wikiId: string) {
+    return this.http.get(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=1&exchars=100&titles=${wikiId}&format=json`).subscribe(res => console.log(res))
   }
 }

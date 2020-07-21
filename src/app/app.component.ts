@@ -3,6 +3,7 @@ import { Feature } from 'geojson';
 
 import { MapService } from './map/map.service';
 import { battle } from '../assets/battle';
+import { heritage } from 'src/assets/heritage';
 import { Loading, Category } from './interfaces';
 import { WikipediaService } from './wikipedia.service';
 
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
     features: any;
     questionNum = 10;
     categories = [
-        { name: 'Battle', id: 'battle', icon: 'museum' },
+        { name: 'War Battle', id: 'battle', icon: 'museum' },
+        { name: 'Heritage', id: 'heritage', icon: 'museum' },
     ];
     selectedCategory: string;
     loadingData: Loading;
@@ -34,7 +36,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.wikiService.getExcerpt('stack_overflow').subscribe()
+        // this.wikiService.getExcerpt('stack_overflow').subscribe();
     }
 
     onClick() {
@@ -58,6 +60,10 @@ export class AppComponent implements OnInit {
         switch (id) {
             case 'battle':
                 this.features = battle.features;
+                this.selectedCategory = id;
+                break;
+            case 'heritage':
+                this.features = heritage.features;
                 this.selectedCategory = id;
                 break;
             default:

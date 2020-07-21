@@ -1,20 +1,19 @@
 <div class="landing">
     <div class="stamp is-draft">
-        BATTLE EDITION
+        HISTORY EDITION
     </div>
     <div class="intro">
-        <h2><span>War Battle Quiz</span></h2>
+        <h2><span>History Location Quiz</span></h2>
         <br>
         <p>
-            How well do you know locations of war battles?
+            How well do you know locations of heritages and war battles?
         </p>
     </div>
     <div class="categories">
         <div *ngFor="let cat of categories">
             <button mat-raised-button (click)="selected(cat.id)">
                 <!-- <mat-icon>{{cat.icon}}</mat-icon> -->
-                <!-- {{cat.name}} -->
-                Begin
+                {{cat.name}}
             </button>
         </div>
 

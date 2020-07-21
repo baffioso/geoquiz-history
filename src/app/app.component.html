@@ -7,7 +7,8 @@
 <div *ngIf="showQuestion" class="question">
     <p class="count">{{index+1}}/{{questionNum}}</p>
     <h1 *ngIf="index < questionNum">
-        Where was <span class="location">{{randomLocations[index].properties.name}}</span>?
+        Where {{selectedCategory === 'battle' ? 'was' : 'is'}} <span
+            class="location">{{randomLocations[index].properties.name}}</span>?
     </h1>
     <p class="war"><span>{{randomLocations[index].properties.war}}</span></p>
 </div>
