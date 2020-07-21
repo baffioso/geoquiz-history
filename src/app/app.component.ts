@@ -120,7 +120,7 @@ export class AppComponent implements OnInit {
                     let html: string;
                     if (wp && wp.length > 0) {
                         // tslint:disable-next-line:max-line-length
-                        html = `<h3>${name}</h3>${res}<a href=${wp} target="_blank">read more</a>`;
+                        html = `<h3>${name}</h3>${res}<a href=${wp} target="_blank">MORE</a>`;
                     } else if (wd) {
                         html = `<h3>${name}</h3>${res}<a href=${wd} target="_blank">Wikidata</a>`;
                     } else {
@@ -133,6 +133,7 @@ export class AppComponent implements OnInit {
             .subscribe();
 
         this.buttonGuess = false;
+        this.showQuestion = false;
 
         if (this.index === this.questionNum - 1) {
             this.showQuestion = false;
@@ -151,6 +152,7 @@ export class AppComponent implements OnInit {
         this.mapService.flyToDK();
 
         this.buttonGuess = true;
+        this.showQuestion = true;
 
         this.index = ++this.index;
     }
