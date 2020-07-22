@@ -1,6 +1,6 @@
 # Geoquiz
 
-Maps and competitions are strong tools to combine if you want people to interact with data. The project began by using geographic names and evovled into a more geo-historic frame, using Wikidata - always on the look for better ways of using data and accessing information, knowledge bases.
+Maps and competitions are strong tools to combine if you want people to interact with data. The project began by using geographic names and evolved into a more geo-historic frame, using Wikidata - always on the look for better ways of using data and accessing information, knowledge bases. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
