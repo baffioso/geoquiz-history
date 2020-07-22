@@ -45,5 +45,6 @@ SELECT ?slagLabel ?article ?krigLabel ?slagstedLabel ?slagdato ?koord WHERE {
     SERVICE wikibase:label {
        bd:serviceParam wikibase:language "en"
     }
-}
+    }
+
 Link:https://w.wiki/XZn
