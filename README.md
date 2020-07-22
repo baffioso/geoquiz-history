@@ -25,3 +25,25 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Using Wikidata - The Battles
+
+The Battles have been created by using wikidata query service, downloaded to PostGIS and rated. The rating was necessary in order to have an 'easy' and hard questions mixture. Admittedly, labelling something 'easy' is highly idiosyncratic. 
+Wikidata query as follows:
+
+#slag that have sitelinks to en.wiki
+#defaultView:Map
+SELECT ?slagLabel ?article ?krigLabel ?slagstedLabel ?slagdato ?koord WHERE {
+
+    ?slag wdt:P31 wd:Q178561 . # krig
+    ?article schema:about ?slag .
+    ?article schema:isPartOf <https://en.wikipedia.org/>.
+        ?slag wdt:P361 ?krig.
+        ?slag wdt:P585 ?slagdato.
+        ?slag wdt:P276 ?slagsted.
+        ?slag wdt:P625 ?koord.
+    SERVICE wikibase:label {
+       bd:serviceParam wikibase:language "en"
+    }
+}
+Link:https://w.wiki/XZn
