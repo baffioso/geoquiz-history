@@ -35,7 +35,8 @@ Wikidata query as follows:
 #defaultView:Map
 
 SELECT ?slagLabel ?article ?krigLabel ?slagstedLabel ?slagdato ?koord WHERE {
-  ?slag wdt:P31 wd:Q178561 . # krig
+ 
+ ?slag wdt:P31 wd:Q178561 . # krig
     ?article schema:about ?slag .
     ?article schema:isPartOf <https://en.wikipedia.org/>.
         ?slag wdt:P361 ?krig.
@@ -58,7 +59,8 @@ Wikidata query as follows:
 #defaultView:Map
 
 SELECT ?hsiteLabel ?articleen ?billede ?countryLabel ?koord WHERE {
-    ?hsite wdt:P1435 wd:Q9259.
+   
+   ?hsite wdt:P1435 wd:Q9259.
     ?articleen schema:about ?hsite .
   {?articleen schema:isPartOf <https://en.wikipedia.org/>}.
   OPTIONAL {?hsite wdt:P18 ?billede.
