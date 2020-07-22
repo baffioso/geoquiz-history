@@ -36,5 +36,6 @@ Link: https://w.wiki/XZn
 ## Using Wikidata - UNESCO Heritage sites
 
 The Sites have been created by using wikidata query service, downloaded to PostGIS and rated. The rating was necessary in order to have a 'easy' and 'hard' questions mixture. Admittedly, labelling something 'easy' is highly idiosyncratic - eurocentric to say the least.
+
 Wikidata query 
 Link: https://w.wiki/XZo
