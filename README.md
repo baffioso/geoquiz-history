@@ -33,9 +33,9 @@ Wikidata query as follows:
 
 #slag that have sitelinks to en.wiki
 #defaultView:Map
-SELECT ?slagLabel ?article ?krigLabel ?slagstedLabel ?slagdato ?koord WHERE {
 
-    ?slag wdt:P31 wd:Q178561 . # krig
+SELECT ?slagLabel ?article ?krigLabel ?slagstedLabel ?slagdato ?koord WHERE {
+  ?slag wdt:P31 wd:Q178561 . # krig
     ?article schema:about ?slag .
     ?article schema:isPartOf <https://en.wikipedia.org/>.
         ?slag wdt:P361 ?krig.
@@ -56,17 +56,14 @@ Wikidata query as follows:
 
 #world heritage Q9259
 #defaultView:Map
-SELECT ?hsiteLabel ?articleen ?billede ?countryLabel ?koord WHERE {
 
+SELECT ?hsiteLabel ?articleen ?billede ?countryLabel ?koord WHERE {
     ?hsite wdt:P1435 wd:Q9259.
     ?articleen schema:about ?hsite .
   {?articleen schema:isPartOf <https://en.wikipedia.org/>}.
   OPTIONAL {?hsite wdt:P18 ?billede.
   ?hsite wdt:P625 ?koord}.
     ?hsite wdt:P17 ?country.
-   
-  
-  
    SERVICE wikibase:label {
        bd:serviceParam wikibase:language "en"
     }
