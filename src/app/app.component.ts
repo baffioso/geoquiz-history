@@ -183,12 +183,18 @@ export class AppComponent implements OnInit, OnDestroy {
         this.index = 0;
         this.distance = [];
 
+        // Remove popup, marker and line
+        this.mapService.marker.remove();
+        this.mapService.popup.remove();
+        this.mapService.removeLine();
+
         this.mapService.currentLocation = null;
         this.mapService.flyToDK();
 
         this.buttonGuess = true;
-        this.showSummery = false;
         this.showLanding = true;
+        this.showSummery = false;
+        this.showQuestion = false;
     }
 
     getCategoryFromId(id: string): Category {
