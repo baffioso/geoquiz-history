@@ -3,6 +3,7 @@ import { Map, Marker, NavigationControl, LngLatLike, GeoJSONSource, LngLatBounds
 import bbox from '@turf/bbox';
 import distance from '@turf/distance';
 import { environment } from '../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class MapService {
     marker = new Marker({ color: '#e8505b' });
     popup = new Popup({ closeButton: false });
     currentLocation: LngLatLike;
+    addedMarker = new BehaviorSubject(false);
 
     createMap() {
         this.map = new Map({
@@ -37,6 +39,8 @@ export class MapService {
         this.marker
             .setLngLat(coords)
             .addTo(this.map);
+
+        this.addedMarker.next(true);
     }
 
     addPopup(coords: [number, number], html: string): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Feature } from 'geojson';
 
 import { MapService } from './map/map.service';
@@ -7,13 +7,14 @@ import { heritage } from 'src/assets/heritage';
 import { Loading, Category } from './interfaces';
 import { WikipediaService } from './wikipedia.service';
 import { tap } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
     title = 'geoquiz';
     showLanding = true;
     showLoading = false;
@@ -32,6 +33,8 @@ export class AppComponent implements OnInit {
     ];
     selectedCategory: string;
     loadingData: Loading;
+    sub: Subscription;
+    addedMarker = false;
 
     constructor(
         private mapService: MapService,
@@ -39,6 +42,11 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.mapService.addedMarker.subscribe(e => this.addedMarker = e);
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
     }
 
     onClick() {
@@ -145,6 +153,7 @@ export class AppComponent implements OnInit {
 
         // Remove markers and line
         this.mapService.marker.remove();
+        this.mapService.addedMarker.next(false);
         this.mapService.popup.remove();
         this.mapService.removeLine();
 
